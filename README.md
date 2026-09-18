@@ -72,6 +72,14 @@ Books can be searched using:
 - Category
 
 ---
+How to run the project
+1.cd LibraryManagementSystem
+2.mvn clean package
+3.This create C:\LibraryManagementSystem\target\LibraryManagementSystem.war
+4.Copy the WAR file to your Tomcat webapps folder:Copy-Item "C:\LibraryManagementSystem\target\LibraryManagementSystem.war" "C:\Users\mapar\OneDrive\Documents\apache-tomcat-10.1.60-windows-x64\apache-tomcat-10.1.60\webapps\"
+5.start tomcat cd "C:\Users\mapar\OneDrive\Documents\apache-tomcat-10.1.60-windows-x64\apache-tomcat-10.1.60\bin"
+.\startup.bat
+6.open chrome http://localhost:8080/LibraryManagementSystem/
 
 ### 👥 Member Management
 
@@ -147,14 +155,6 @@ The current fine rate is:Fine = Late Days × ₹5
 │        MySQL         │
 │     library_db       │
 └──────────────────────┘
-How to run the project
-1.cd LibraryManagementSystem
-2.mvn clean package
-3.This create C:\LibraryManagementSystem\target\LibraryManagementSystem.war
-4.Copy the WAR file to your Tomcat webapps folder:Copy-Item "C:\LibraryManagementSystem\target\LibraryManagementSystem.war" "C:\Users\mapar\OneDrive\Documents\apache-tomcat-10.1.60-windows-x64\apache-tomcat-10.1.60\webapps\"
-5.start tomcat cd "C:\Users\mapar\OneDrive\Documents\apache-tomcat-10.1.60-windows-x64\apache-tomcat-10.1.60\bin"
-.\startup.bat
-6.open chrome http://localhost:8080/LibraryManagementSystem/
 
 
 ```text
