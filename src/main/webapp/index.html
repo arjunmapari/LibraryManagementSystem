@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Library Management System</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="header-inner">
+
+        <div class="logo-area">
+
+            <div class="logo-icon">
+                📚
+            </div>
+
+            <div>
+
+                <h1>
+                    Library Management System
+                </h1>
+
+                <p>
+                    Manage books, members and transactions
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-area">
+
+            <div>
+
+                <div class="admin-name">
+                    Administrator
+                </div>
+
+                <div class="admin-role">
+                    Library Admin
+                </div>
+
+            </div>
+
+            <div class="admin-avatar">
+                A
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav>
+
+    <button
+        class="nav-btn active"
+        data-section="dashboard"
+        onclick="showSection('dashboard', this)"
+    >
+        🏠 Dashboard
+    </button>
+
+
+    <button
+        class="nav-btn"
+        data-section="books"
+        onclick="showSection('books', this)"
+    >
+        📚 Books
+    </button>
+
+
+    <button
+        class="nav-btn"
+        data-section="members"
+        onclick="showSection('members', this)"
+    >
+        👥 Members
+    </button>
+
+
+    <button
+        class="nav-btn"
+        data-section="issue"
+        onclick="showSection('issue', this)"
+    >
+        📤 Issue Book
+    </button>
+
+
+    <button
+        class="nav-btn"
+        data-section="return"
+        onclick="showSection('return', this)"
+    >
+        📥 Return Book
+    </button>
+
+</nav>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section id="dashboard">
+
+    <div class="dashboard-welcome">
+
+        <h2>
+            Dashboard
+        </h2>
+
+        <p>
+            Welcome to your library management dashboard.
+        </p>
+
+    </div>
+
+
+    <!-- STAT CARDS -->
+
+    <div class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📚
+            </div>
+
+            <div class="stat-info">
+
+                <span>
+                    Total Books
+                </span>
+
+                <strong id="totalBooks">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✓
+            </div>
+
+            <div class="stat-info">
+
+                <span>
+                    Available Books
+                </span>
+
+                <strong id="availableBooks">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <div class="stat-info">
+
+                <span>
+                    Members
+                </span>
+
+                <strong id="totalMembers">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📤
+            </div>
+
+            <div class="stat-info">
+
+                <span>
+                    Issued Books
+                </span>
+
+                <strong id="issuedBooks">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- DASHBOARD PANELS -->
+
+    <div class="dashboard-grid">
+
+
+        <div class="dashboard-panel">
+
+            <div class="panel-header">
+
+                <h3>
+                    Recent Books
+                </h3>
+
+                <span>
+                    Latest books
+                </span>
+
+            </div>
+
+            <div class="panel-body">
+
+                <div
+                    id="recentBooks"
+                    class="recent-list"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-panel">
+
+            <div class="panel-header">
+
+                <h3>
+                    Quick Actions
+                </h3>
+
+                <span>
+                    Shortcuts
+                </span>
+
+            </div>
+
+
+            <div class="panel-body">
+
+                <div class="quick-actions">
+
+
+                    <button
+                        class="quick-action"
+                        onclick="showSectionByName('books')"
+                    >
+
+                        <div class="quick-action-icon">
+                            📚
+                        </div>
+
+                        <strong>
+                            Manage Books
+                        </strong>
+
+                        <small>
+                            Add, edit and delete books
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        class="quick-action"
+                        onclick="showSectionByName('members')"
+                    >
+
+                        <div class="quick-action-icon">
+                            👥
+                        </div>
+
+                        <strong>
+                            Manage Members
+                        </strong>
+
+                        <small>
+                            Add and manage members
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        class="quick-action"
+                        onclick="showSectionByName('issue')"
+                    >
+
+                        <div class="quick-action-icon">
+                            📤
+                        </div>
+
+                        <strong>
+                            Issue Book
+                        </strong>
+
+                        <small>
+                            Issue a book to a member
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        class="quick-action"
+                        onclick="showSectionByName('return')"
+                    >
+
+                        <div class="quick-action-icon">
+                            📥
+                        </div>
+
+                        <strong>
+                            Return Book
+                        </strong>
+
+                        <small>
+                            Return an issued book
+                        </small>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CURRENT ACTIVITY -->
+
+    <div
+        class="dashboard-panel"
+        style="margin-top:20px;"
+    >
+
+        <div class="panel-header">
+
+            <h3>
+                Library Status
+            </h3>
+
+            <span>
+                Current information
+            </span>
+
+        </div>
+
+        <div class="panel-body">
+
+            <div class="status-grid">
+
+                <div class="status-item">
+
+                    <span>
+                        Book Collection
+                    </span>
+
+                    <strong id="collectionStatus">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="status-item">
+
+                    <span>
+                        Available Copies
+                    </span>
+
+                    <strong id="availableStatus">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="status-item">
+
+                    <span>
+                        Currently Issued
+                    </span>
+
+                    <strong id="issuedStatus">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="status-item">
+
+                    <span>
+                        Registered Members
+                    </span>
+
+                    <strong id="memberStatus">
+                        Loading...
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BOOKS
+===================================================== -->
+
+<section
+    id="books"
+    class="hidden"
+>
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Books
+            </h2>
+
+            <p>
+                Manage your library books
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary-btn"
+            onclick="openBookModal()"
+        >
+            + Add Book
+        </button>
+
+    </div>
+
+
+    <div class="toolbar">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search by ISBN, title, author or category..."
+            oninput="loadBooks()"
+        >
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>ISBN</th>
+
+                    <th>Title</th>
+
+                    <th>Author</th>
+
+                    <th>Category</th>
+
+                    <th>Quantity</th>
+
+                    <th>Available</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="bookTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MEMBERS
+===================================================== -->
+
+<section
+    id="members"
+    class="hidden"
+>
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Members
+            </h2>
+
+            <p>
+                Manage registered library members
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary-btn"
+            onclick="openMemberModal()"
+        >
+            + Add Member
+        </button>
+
+    </div>
+
+
+    <div class="toolbar">
+
+        <input
+            type="text"
+            id="memberSearch"
+            placeholder="Search members..."
+            oninput="loadMembers()"
+        >
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Name</th>
+
+                    <th>Email</th>
+
+                    <th>Phone</th>
+
+                    <th>Address</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="memberTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ISSUE BOOK
+===================================================== -->
+
+<section
+    id="issue"
+    class="hidden"
+>
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Issue Book
+            </h2>
+
+            <p>
+                Issue an available book to a member
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="issue-card">
+
+        <form id="issueForm">
+
+
+            <div class="form-group">
+
+                <label>
+                    Select Book *
+                </label>
+
+                <select
+                    id="issueBook"
+                    required
+                >
+
+                    <option value="">
+                        Loading books...
+                    </option>
+
+                </select>
+
+
+                <small id="bookAvailability">
+                    Select a book
+                </small>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Select Member *
+                </label>
+
+                <select
+                    id="issueMember"
+                    required
+                >
+
+                    <option value="">
+                        Loading members...
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="two-columns">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Issue Date *
+                    </label>
+
+                    <input
+                        type="date"
+                        id="issueDate"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Due Date *
+                    </label>
+
+                    <input
+                        type="date"
+                        id="dueDate"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="issue-summary">
+
+                <h3>
+                    Issue Summary
+                </h3>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Book
+                    </span>
+
+                    <strong id="summaryBook">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Member
+                    </span>
+
+                    <strong id="summaryMember">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Due Date
+                    </span>
+
+                    <strong id="summaryDueDate">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="resetIssueForm()"
+                >
+                    Clear
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                    id="issueSubmitBtn"
+                >
+                    Issue Book
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     RETURN BOOK
+===================================================== -->
+
+<section
+    id="return"
+    class="hidden"
+>
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Return Book
+            </h2>
+
+            <p>
+                View and return currently issued books
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="toolbar">
+
+        <input
+            type="text"
+            id="returnSearch"
+            placeholder="Search by book or member..."
+            oninput="loadReturns()"
+        >
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Book</th>
+
+                    <th>ISBN</th>
+
+                    <th>Member</th>
+
+                    <th>Issue Date</th>
+
+                    <th>Due Date</th>
+
+                    <th>Late Days</th>
+
+                    <th>Fine</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="returnTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+     MEMBER MODAL
+===================================================== -->
+
+<div
+    id="memberModal"
+    class="modal hidden"
+>
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <small>
+                    MEMBER MANAGEMENT
+                </small>
+
+                <h2 id="memberModalTitle">
+                    Add New Member
+                </h2>
+
+            </div>
+
+
+            <button
+                class="close-btn"
+                onclick="closeMemberModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="memberForm">
+
+            <input
+                type="hidden"
+                id="memberId"
+            >
+
+
+            <label>
+                Name *
+            </label>
+
+            <input
+                type="text"
+                id="memberName"
+                placeholder="Enter member name"
+                required
+            >
+
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="memberEmail"
+                placeholder="Enter email"
+            >
+
+
+            <div class="two-columns">
+
+
+                <div>
+
+                    <label>
+                        Phone
+                    </label>
+
+                    <input
+                        type="text"
+                        id="memberPhone"
+                        placeholder="Phone"
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>
+                        Address
+                    </label>
+
+                    <input
+                        type="text"
+                        id="memberAddress"
+                        placeholder="Address"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeMemberModal()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    Save Member
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     BOOK MODAL
+===================================================== -->
+
+<div
+    id="bookModal"
+    class="modal hidden"
+>
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <small>
+                    BOOK MANAGEMENT
+                </small>
+
+                <h2 id="bookModalTitle">
+                    Add New Book
+                </h2>
+
+            </div>
+
+
+            <button
+                class="close-btn"
+                onclick="closeBookModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="bookForm">
+
+            <input
+                type="hidden"
+                id="bookId"
+            >
+
+
+            <label>
+                ISBN *
+            </label>
+
+            <input
+                type="text"
+                id="isbn"
+                required
+                placeholder="Example: 9780134685991"
+            >
+
+
+            <label>
+                Book Title *
+            </label>
+
+            <input
+                type="text"
+                id="title"
+                required
+                placeholder="Enter book title"
+            >
+
+
+            <label>
+                Author *
+            </label>
+
+            <input
+                type="text"
+                id="author"
+                required
+                placeholder="Enter author"
+            >
+
+
+            <label>
+                Category
+            </label>
+
+            <input
+                type="text"
+                id="category"
+                placeholder="Example: Programming"
+            >
+
+
+            <label>
+                Quantity *
+            </label>
+
+            <input
+                type="number"
+                id="quantity"
+                min="1"
+                required
+                placeholder="Enter quantity"
+            >
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeBookModal()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    Save Book
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    id="toast"
+    class="toast hidden"
+>
+</div>
+
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
