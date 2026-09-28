@@ -37,6 +37,59 @@ The dashboard provides an overview of the library:
 - Total members
 - Recently added books
 - Library status
+- 
+Frontend (HTML/CSS/JS)
+        ↓
+Java Servlet / REST API
+        ↓
+JDBC
+        ↓
+MySQL
+
+1.Put this SQL into MySQL
+Open MySQL Workbench → SQL Editor → New Query, paste the following, and click the ⚡ Execute button:
+CREATE DATABASE library_db;
+
+USE library_db;
+
+CREATE TABLE books (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    isbn VARCHAR(50) NOT NULL UNIQUE,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    category VARCHAR(100),
+    quantity INT NOT NULL DEFAULT 1,
+    available_quantity INT NOT NULL DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE members (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(150) NOT NULL,
+    email VARCHAR(150),
+    phone VARCHAR(30),
+    address VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE issues (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    book_id INT NOT NULL,
+    member_id INT NOT NULL,
+    issue_date DATE NOT NULL,
+    due_date DATE NOT NULL,
+    return_date DATE NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'ISSUED',
+
+    FOREIGN KEY (book_id) REFERENCES books(id),
+    FOREIGN KEY (member_id) REFERENCES members(id)
+);
+
+CREATE TABLE admins (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL
+);
 
 ---
 
