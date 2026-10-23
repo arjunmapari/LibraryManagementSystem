@@ -1,54 +1,87 @@
 # 📚 Library Management System
 
-A web-based **Library Management System** developed using **Java, Servlets, JDBC, MySQL, Maven, HTML, CSS, and JavaScript**.
+A web-based **Library Management System** built using **Java, Java Servlets, JDBC, MySQL, Maven, HTML, CSS, and JavaScript**.
 
-The system provides a simple and efficient way to manage books, library members, book issuing, and book returns through a browser-based interface.
-
----
-
-## 📌 Project Overview
-
-The Library Management System is designed to digitize common library operations.
-
-It allows an administrator/library staff to:
-
-- Manage books
-- Manage library members
-- Issue books to members
-- Return issued books
-- Track available and issued books
-- Calculate fines for late returns
-- Search books and members
-- View library statistics through a dashboard
-
-The application uses **Java Servlets** for backend processing, **JDBC** for database connectivity, and **MySQL** for persistent data storage.
-
----
+The application helps library staff manage books, members, book issuing, returns, availability, and late-return fines through a browser-based interface.
 
 ## ✨ Features
 
 ### 📊 Dashboard
+- View total books, available books, issued books, and registered members.
+- View recently added books.
+- Monitor library statistics.
 
-The dashboard provides an overview of the library:
+### 📖 Book Management
+- Add, edit, and delete books.
+- Store ISBN, title, author, category, and quantity.
+- Search books by ISBN, title, author, or category.
 
-- Total books
-- Available books
-- Issued books
-- Total members
-- Recently added books
-- Library status
-- 
-Frontend (HTML/CSS/JS)
-        ↓
-Java Servlet / REST API
-        ↓
+### 👥 Member Management
+- Add, edit, and delete library members.
+- Store member names, email addresses, phone numbers, and addresses.
+- Search registered members.
+
+### 📕 Book Issuing
+- Issue books to registered members.
+- Record issue dates and due dates.
+- Update available book quantities automatically.
+- Prevent issuing books when no copies are available.
+
+### 📗 Book Returns
+- Record book return dates.
+- Update issue status and book availability.
+- Calculate overdue days and applicable fines.
+
+**Fine calculation:** ₹5 × number of late days.
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| Java | Backend programming |
+| Java Servlets | HTTP request handling |
+| JDBC | Database connectivity |
+| MySQL | Persistent data storage |
+| Maven | Dependency management and build |
+| HTML & CSS | Page structure and styling |
+| JavaScript | Client-side interactions |
+| Apache Tomcat 10.1 | Application server |
+
+## 🏗️ Application Architecture
+
+```text
+Web Browser
+HTML / CSS / JavaScript
+          |
+          v
+Apache Tomcat
+Java Servlets
+          |
+          v
 JDBC
-        ↓
-MySQL
+          |
+          v
+MySQL Database
+library_db
+```
 
-1.Put this SQL into MySQL
-Open MySQL Workbench → SQL Editor → New Query, paste the following, and click the ⚡ Execute button:
-CREATE DATABASE library_db;
+## 🗄️ Database Setup
+
+### Prerequisites
+
+Install and configure:
+- Java Development Kit (JDK)
+- Apache Maven
+- MySQL Server
+- MySQL Workbench (optional)
+- Apache Tomcat 10.1
+
+### Step 1: Create the database
+
+Open MySQL Workbench, create a new SQL query, and execute the following script.
+
+```sql
+CREATE DATABASE IF NOT EXISTS library_db;
 
 USE library_db;
 
@@ -90,125 +123,103 @@ CREATE TABLE admins (
     username VARCHAR(100) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL
 );
+```
 
----
+**Important:** This script creates the database tables but does not create an administrator account or configure the application's database connection. Configure the MySQL credentials according to your project settings. Store administrator passwords as secure hashes, never as plain text.
 
-### 📖 Book Management
+## 🚀 How to Run the Project
 
-The system provides complete CRUD operations for books.
+The following instructions assume Windows, Maven, and Tomcat 10.1.
 
-#### Add Book
+### Step 1: Open the project folder
 
-Library staff can add a new book with:
+Open PowerShell and navigate to your project directory:
 
-- ISBN
-- Book title
-- Author
-- Category
-- Quantity
+```powershell
+cd C:\LibraryManagementSystem
+```
 
-#### Edit Book
+Adjust the path if your project is stored elsewhere.
 
-Existing book information can be updated.
+### Step 2: Build the project
 
-#### Delete Book
+Run:
 
-Books can be removed from the library database when appropriate.
+```powershell
+mvn clean package
+```
 
-#### Search Books
+After a successful build, Maven should generate a WAR file under the project's `target` directory. The exact filename depends on your Maven configuration.
 
-Books can be searched using:
-
-- ISBN
-- Title
-- Author
-- Category
-
----
-How to run the project
-1.cd LibraryManagementSystem
-2.mvn clean package
-3.This create C:\LibraryManagementSystem\target\LibraryManagementSystem.war
-4.Copy the WAR file to your Tomcat webapps folder:Copy-Item "C:\LibraryManagementSystem\target\LibraryManagementSystem.war" "C:\Users\mapar\OneDrive\Documents\apache-tomcat-10.1.60-windows-x64\apache-tomcat-10.1.60\webapps\"
-5.start tomcat cd "C:\Users\mapar\OneDrive\Documents\apache-tomcat-10.1.60-windows-x64\apache-tomcat-10.1.60\bin"
-.\startup.bat
-6.open chrome http://localhost:8080/LibraryManagementSystem/
-
-### 👥 Member Management
-
-Library members can be managed through the system.
-
-Member information includes:
-
-- Name
-- Email
-- Phone
-- Address
-
-Available operations:
-
-- Add member
-- Edit member
-- Delete member
-- Search members
-
----
-
-### 📕 Issue Book
-
-Books can be issued to registered members.
-
-The system records:
-
-- Book
-- Member
-- Issue date
-- Due date
-
-When a book is issued, its available quantity is automatically decreased.
-
-The system also prevents issuing a book when no copies are available.
-
----
-
-### 📗 Return Book
-
-Issued books can be returned through the Return Book section.
-
-The system:
-
-- Records the return date
-- Changes the issue status
-- Updates the available book quantity
-- Calculates late days
-- Calculates the applicable fine
-
-#### Fine Calculation
-
-The current fine rate is:Fine = Late Days × ₹5
-┌──────────────────────┐
-│      Web Browser     │
-│  HTML / CSS / JS     │
-└──────────┬───────────┘
-           │
-           ▼
-┌──────────────────────┐
-│    Apache Tomcat     │
-│      Java Servlets   │
-└──────────┬───────────┘
-           │
-           ▼
-┌──────────────────────┐
-│         JDBC         │
-│   Database Access    │
-└──────────┬───────────┘
-           │
-           ▼
-┌──────────────────────┐
-│        MySQL         │
-│     library_db       │
-└──────────────────────┘
-
+For example:
 
 ```text
-₹5 per late day
+target/LibraryManagementSystem.war
+```
+
+### Step 3: Deploy the WAR file
+
+Copy the generated WAR file into the Tomcat `webapps` directory.
+
+Update the source and destination paths to match your computer:
+
+```powershell
+Copy-Item "C:\LibraryManagementSystem\target\LibraryManagementSystem.war" "C:\path\to\apache-tomcat\webapps\"
+```
+
+### Step 4: Start Apache Tomcat
+
+Navigate to Tomcat's `bin` directory:
+
+```powershell
+cd "C:\path\to\apache-tomcat\bin"
+.\startup.bat
+```
+
+### Step 5: Open the application
+
+Once Tomcat has deployed the application, open:
+
+```text
+http://localhost:8080/LibraryManagementSystem/
+```
+
+If the application does not load, check the Tomcat logs, deployment status, database configuration, and JDBC connection settings.
+
+## 📂 Project Structure
+
+A typical Maven web application may use a structure like this:
+
+```text
+LibraryManagementSystem/
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── ... (Servlets and Java classes)
+│       ├── resources/
+│       └── webapp/
+│           ├── WEB-INF/
+│           ├── css/
+│           ├── js/
+│           └── ... (Web pages)
+├── pom.xml
+└── README.md
+```
+
+Your actual project structure may differ.
+
+## 🔮 Future Improvements
+
+- Add role-based authentication and authorization.
+- Improve input validation and error handling.
+- Add automated tests for issuing, returning, and fine calculations.
+- Add pagination and more advanced search.
+- Improve accessibility and responsive design.
+- 
+**Arjun Mapari**
+
+- GitHub: [@arjunmapari](https://github.com/arjunmapari)
+
+---
+
+⭐ If you find this project useful, consider giving the repository a star!
