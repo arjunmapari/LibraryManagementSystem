@@ -215,9 +215,7 @@ Your actual project structure may differ.
 - Add automated tests for issuing, returning, and fine calculations.
 - Add pagination and more advanced search.
 - Improve accessibility and responsive design.
-
-## 👨‍💻 Author
-
+- 
 **Arjun Mapari**
 
 - GitHub: [@arjunmapari](https://github.com/arjunmapari)
